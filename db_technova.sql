@@ -24,7 +24,7 @@ CREATE TABLE pedido (
 id_pedido INT AUTO_INCREMENT PRIMARY KEY,
 id_usuario INT NOT NULL,
 fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-total_pedido INT,
+total_pedido DECIMAL(10, 2) NOT NULL,
 FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
 );
 

@@ -6,17 +6,45 @@
 </p>
 
 ## Descripción
+<p align="justify">
 Aplicación web de comercio electrónico orientada a la venta de material informático. El objetivo principal del sistema es digitalizar el catálogo, acceder a él permitiendo a los clientes consultar artículos, gestionar un carrito de compra y realizar pedidos. La plataforma facilitará la gestión interna del inventario y los pedidos mediante distintos perfiles.
+</p>
 
-## Integrantes
+## Equipo de desarrollo
 David Fraile, Shaghayegh Asghari, Álvaro Martín, Rayan Torres
-## Tecnologías usadas
-MySQL
 
-JAVA
+## Tecnologías utilizadas
 
-HTML/CSS/JS
+Backend
+* JAVA
+* JAVALIN
+* API REST
+* JSON
+
+Base de datos
+* MySQL
+
+Herramientas
+* GitHub
+* IntelliJ
+
+Frontend
+* HTML/CSS/JS
+
+## Arquitectura del proyecto
+
+El sistema sigue una arquitectura cliente-servidor:
+Frontend → API REST → Base de datos MySQL
 
 ## Funcionalidades 
 
+## Instalación y ejecución
+
+1. Clonar repositorio
+2. Importar proyecto en IDE
+3. Configurar conexión MySQL
+4. Ejecutar backend
+5. Probar endpoints con Postman
+
 ## Documentación
+La documentación del proyecto se encuentra en la carpeta docs.

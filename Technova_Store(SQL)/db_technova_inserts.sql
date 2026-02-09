@@ -61,4 +61,3 @@ INSERT INTO linea_pedido (id_pedido, id_producto, cantidad, precio_unitario_mome
 (4, 7, 2, 17.90),
 (4, 2, 1, 75.00);
 
-

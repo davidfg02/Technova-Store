@@ -19,7 +19,7 @@ public class UsuarioRepository {
     public List<Usuario> findAll() {
         List<Usuario> usuarios = new ArrayList<>();
 
-        String sql = "SELECT id, nombre, email FROM usuarios";
+        String sql = "SELECT id_usuario, email, password,rol FROM usuario";
 
         try (Connection con = dataSource.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
@@ -27,9 +27,11 @@ public class UsuarioRepository {
 
             while (rs.next()) {
                 Usuario u = new Usuario(
-                        rs.getLong("id"),
-                        rs.getString("nombre"),
-                        rs.getString("email")
+                        rs.getLong("id_usuario"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("rol")
+
                 );
                 usuarios.add(u);
             }
@@ -42,14 +44,14 @@ public class UsuarioRepository {
     }
 
     public void save(Usuario usuario) {
-        String sql = "INSERT INTO usuarios (nombre, email) VALUES (?, ?)";
+        String sql = "INSERT INTO usuario (email, password, rol) VALUES (?, ?, ?)";
 
         try (Connection con = dataSource.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, usuario.getNombre());
-            ps.setString(2, usuario.getEmail());
-
+            ps.setString(1, usuario.getEmail());
+            ps.setString(2, usuario.getPassword());
+            ps.setString(3, usuario.getRol());
             ps.executeUpdate();
 
         } catch (SQLException e) {

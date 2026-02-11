@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Producto.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #fede5d; font-style: italic;}
+.s1 { color: #ffffff;}
+.s2 { color: #b6b1b1;}
+.s3 { color: #36f9f6;}
+.s4 { color: #fede5d;}
+.s5 { color: #ff8b39;}
+.s6 { color: #03edf9;}
+</style>
+</head>
+<body bgcolor="#262335">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Producto.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">demo</span><span class="s2">.</span><span class="s1">model</span><span class="s2">;</span>
+
+
+<span class="s0">public class </span><span class="s1">Producto </span><span class="s3">{</span>
+    <span class="s0">public static final </span><span class="s1">String ID_PRODUCTO </span><span class="s4">= </span><span class="s5">&quot;id_producto&quot;</span><span class="s2">;</span>
+    <span class="s0">public static final </span><span class="s1">String SKU </span><span class="s4">= </span><span class="s5">&quot;sku&quot;</span><span class="s2">;</span>
+    <span class="s0">public static final </span><span class="s1">String NOMBRE </span><span class="s4">= </span><span class="s5">&quot;nombre&quot;</span><span class="s2">;</span>
+    <span class="s0">public static final </span><span class="s1">String DESCRIPCION </span><span class="s4">= </span><span class="s5">&quot;descripcion&quot;</span><span class="s2">;</span>
+    <span class="s0">public static final </span><span class="s1">String PRECIO </span><span class="s4">= </span><span class="s5">&quot;precio&quot;</span><span class="s2">;</span>
+    <span class="s0">public static final </span><span class="s1">String STOCK </span><span class="s4">= </span><span class="s5">&quot;stock&quot;</span><span class="s2">;</span>
+    <span class="s0">public static final </span><span class="s1">String CATEGORIA </span><span class="s4">= </span><span class="s5">&quot;categoria&quot;</span><span class="s2">;</span>
+    <span class="s0">public static final </span><span class="s1">String IMAGEN </span><span class="s4">= </span><span class="s5">&quot;imagen&quot;</span><span class="s2">;</span>
+
+    <span class="s0">private </span><span class="s1">Long id_producto</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String sku</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String nombre</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String descripcion</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">Double precio</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">stock</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">EnumCategoria categoria</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String imagen</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">Producto</span><span class="s6">() </span><span class="s3">{</span>
+    <span class="s3">}</span>
+
+    <span class="s0">public </span><span class="s1">Producto</span><span class="s6">(</span><span class="s1">Long id_producto</span><span class="s2">, </span><span class="s1">String sku</span><span class="s2">, </span><span class="s1">String nombre</span><span class="s2">, </span><span class="s1">String descripcion</span><span class="s2">, </span><span class="s1">Double precio</span><span class="s2">, </span><span class="s0">int </span><span class="s1">stock</span><span class="s2">, </span><span class="s1">EnumCategoria categoria</span><span class="s2">, </span><span class="s1">String imagen</span><span class="s6">) </span><span class="s3">{</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">id_producto </span><span class="s4">= </span><span class="s1">id_producto</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">sku </span><span class="s4">= </span><span class="s1">sku</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">nombre </span><span class="s4">= </span><span class="s1">nombre</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">descripcion </span><span class="s4">= </span><span class="s1">descripcion</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">precio </span><span class="s4">= </span><span class="s1">precio</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">stock </span><span class="s4">= </span><span class="s1">stock</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">categoria </span><span class="s4">= </span><span class="s1">categoria</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">imagen </span><span class="s4">= </span><span class="s1">imagen</span><span class="s2">;</span>
+    <span class="s3">}</span>
+
+    <span class="s0">public </span><span class="s1">Long getId_producto</span><span class="s6">() </span><span class="s3">{</span><span class="s0">return </span><span class="s1">id_producto</span><span class="s2">;</span><span class="s3">}</span>
+    <span class="s0">public void </span><span class="s1">setId_producto</span><span class="s6">(</span><span class="s1">Long id_producto</span><span class="s6">) </span><span class="s3">{</span><span class="s0">this</span><span class="s2">.</span><span class="s1">id_producto </span><span class="s4">= </span><span class="s1">id_producto</span><span class="s2">;</span><span class="s3">}</span>
+
+    <span class="s0">public </span><span class="s1">String getSku</span><span class="s6">() </span><span class="s3">{</span><span class="s0">return </span><span class="s1">sku</span><span class="s2">;</span><span class="s3">}</span>
+    <span class="s0">public void </span><span class="s1">setSku</span><span class="s6">(</span><span class="s1">String sku</span><span class="s6">) </span><span class="s3">{</span><span class="s0">this</span><span class="s2">.</span><span class="s1">sku </span><span class="s4">= </span><span class="s1">sku</span><span class="s2">;</span><span class="s3">}</span>
+
+    <span class="s0">public </span><span class="s1">String getNombre</span><span class="s6">() </span><span class="s3">{</span><span class="s0">return </span><span class="s1">nombre</span><span class="s2">;</span><span class="s3">}</span>
+    <span class="s0">public void </span><span class="s1">setNombre</span><span class="s6">(</span><span class="s1">String nombre</span><span class="s6">) </span><span class="s3">{</span><span class="s0">this</span><span class="s2">.</span><span class="s1">nombre </span><span class="s4">= </span><span class="s1">nombre</span><span class="s2">;</span><span class="s3">}</span>
+
+    <span class="s0">public </span><span class="s1">String getDescripcion</span><span class="s6">() </span><span class="s3">{</span><span class="s0">return </span><span class="s1">descripcion</span><span class="s2">;</span><span class="s3">}</span>
+    <span class="s0">public void </span><span class="s1">setDescripcion</span><span class="s6">(</span><span class="s1">String descripcion</span><span class="s6">) </span><span class="s3">{</span><span class="s0">this</span><span class="s2">.</span><span class="s1">descripcion </span><span class="s4">= </span><span class="s1">descripcion</span><span class="s2">;</span><span class="s3">}</span>
+
+    <span class="s0">public </span><span class="s1">Double getPrecio</span><span class="s6">() </span><span class="s3">{</span><span class="s0">return </span><span class="s1">precio</span><span class="s2">;</span><span class="s3">}</span>
+    <span class="s0">public void </span><span class="s1">setPrecio</span><span class="s6">(</span><span class="s1">Double precio</span><span class="s6">) </span><span class="s3">{</span><span class="s0">this</span><span class="s2">.</span><span class="s1">precio </span><span class="s4">= </span><span class="s1">precio</span><span class="s2">;</span><span class="s3">}</span>
+
+    <span class="s0">public int </span><span class="s1">getStock</span><span class="s6">() </span><span class="s3">{</span><span class="s0">return </span><span class="s1">stock</span><span class="s2">;</span><span class="s3">}</span>
+    <span class="s0">public void </span><span class="s1">setStock</span><span class="s6">(</span><span class="s0">int </span><span class="s1">stock</span><span class="s6">) </span><span class="s3">{</span><span class="s0">this</span><span class="s2">.</span><span class="s1">stock </span><span class="s4">= </span><span class="s1">stock</span><span class="s2">;</span><span class="s3">}</span>
+
+    <span class="s0">public </span><span class="s1">EnumCategoria getCategoria</span><span class="s6">() </span><span class="s3">{</span><span class="s0">return </span><span class="s1">categoria</span><span class="s2">;</span><span class="s3">}</span>
+    <span class="s0">public void </span><span class="s1">setCategoria</span><span class="s6">(</span><span class="s1">EnumCategoria categoria</span><span class="s6">) </span><span class="s3">{</span><span class="s0">this</span><span class="s2">.</span><span class="s1">categoria </span><span class="s4">= </span><span class="s1">categoria</span><span class="s2">;</span><span class="s3">}</span>
+
+    <span class="s0">public </span><span class="s1">String getImagen</span><span class="s6">() </span><span class="s3">{</span><span class="s0">return </span><span class="s1">imagen</span><span class="s2">;</span><span class="s3">}</span>
+    <span class="s0">public void </span><span class="s1">setImagen</span><span class="s6">(</span><span class="s1">String imagen</span><span class="s6">) </span><span class="s3">{</span><span class="s0">this</span><span class="s2">.</span><span class="s1">imagen </span><span class="s4">= </span><span class="s1">imagen</span><span class="s2">;</span><span class="s3">}</span>
+<span class="s3">}</span>
+</pre>
+</body>
+</html>

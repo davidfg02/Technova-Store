@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da6424da-01c0-4dc7-be49-f781588cb007" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/EnumRol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Technova-Store/demo/demo/src/main/java/com/example/demo/repository/ProductoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Technova-Store/demo/demo/src/main/java/com/example/demo/repository/ProductoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/PedidoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/PedidoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/ProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/ProductoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Pedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repository/PedidoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repository/PedidoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repository/ProductoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repository/ProductoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repository/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/example/demo/controller/Linea_pedidoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/example/demo/controller/Linea_pedidoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/example/demo/controller/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/example/demo/controller/UsuarioController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/example/demo/model/Linea_pedido.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/example/demo/model/Linea_pedido.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/example/demo/repository/Linea_pedidoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/example/demo/repository/Linea_pedidoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/example/demo/repository/UsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/example/demo/repository/UsuarioRepository.class" afterDir="false" />
-    </list>
+    <list default="true" id="da6424da-01c0-4dc7-be49-f781588cb007" name="Changes" comment="Errores solucionados y codigo preparado para introducir procedures" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -143,8 +125,17 @@
       <workItem from="1770797005077" duration="501000" />
       <workItem from="1770814523261" duration="282000" />
       <workItem from="1770814999100" duration="526000" />
-      <workItem from="1770830289150" duration="3742000" />
+      <workItem from="1770830289150" duration="4108000" />
     </task>
+    <task id="LOCAL-00001" summary="Errores solucionados y codigo preparado para introducir procedures">
+      <option name="closed" value="true" />
+      <created>1770836681144</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1770836681144</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,5 +151,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Errores solucionados y codigo preparado para introducir procedures" />
+    <option name="LAST_COMMIT_MESSAGE" value="Errores solucionados y codigo preparado para introducir procedures" />
   </component>
 </project>

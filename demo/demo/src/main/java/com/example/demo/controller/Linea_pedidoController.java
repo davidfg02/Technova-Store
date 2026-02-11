@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/linea_pedido")
+@RequestMapping("/api/linea_pedido")
 public class Linea_pedidoController {
 
     private final Linea_pedidoRepository repository;

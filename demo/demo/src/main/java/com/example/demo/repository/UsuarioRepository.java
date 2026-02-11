@@ -3,6 +3,8 @@ package com.example.demo.repository;
 import com.example.demo.model.EnumRol;
 import com.example.demo.model.Usuario;
 import org.springframework.stereotype.Repository;
+import com.example.demo.model.LoginResponse;
+
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -68,4 +70,30 @@ public class UsuarioRepository {
         
         return usuario;
     }
+    public LoginResponse login(String email, String password) {
+
+        String sql = "{CALL sp_login(?, ?)}";
+
+        try (Connection con = dataSource.getConnection();
+             CallableStatement cs = con.prepareCall(sql)) {
+
+            cs.setString(1, email);
+            cs.setString(2, password);
+
+            ResultSet rs = cs.executeQuery();
+
+            if (rs.next()) {
+                return new LoginResponse(
+                        "ok",
+                        rs.getString("rol")
+                );
+            }
+
+            return null;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

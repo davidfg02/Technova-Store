@@ -4,7 +4,11 @@ import com.example.demo.model.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,20 +46,29 @@ public class UsuarioRepository {
         return usuarios;  
     }
 
-    public void save(Usuario usuario) {
+    public Usuario save(Usuario usuario) {
         String sql = "INSERT INTO usuario (email, password, rol) VALUES ( ?, ?, ?)";
 
         try (Connection con = dataSource.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             
             ps.setString(1, usuario.getEmail());
             ps.setString(2, usuario.getPassword());
             ps.setString(3, usuario.getRol());
 
-            ps.executeUpdate(); 
+            ps.executeUpdate();
+            
+            // Obtener el ID generado
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    // Podría retornar el usuario con el ID si fuera necesario
+                }
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        
+        return usuario;
     }
 }

@@ -17,11 +17,11 @@ public class ProductoRepository {
     }
     public List<Producto> findAll(){
         List<Producto> productos = new ArrayList<>();
-        String sql = "SELECT * FROM producto";
+        String sql = "{CALL obtener_productos()}";
 
         try (Connection con = dataSource.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery()){
+             CallableStatement cs = con.prepareCall(sql);
+             ResultSet rs = cs.executeQuery()){
 
             while (rs.next()){
                 Producto p = new Producto(
@@ -37,6 +37,34 @@ public class ProductoRepository {
                 productos.add(p);
             }
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return productos;
+    }
+
+    public List<Producto> findByCategoria(EnumCategoria categoria){
+        List<Producto> productos = new ArrayList<>();
+        String sql = "{CALL obtener_productos_categoria()}";
+
+        try(Connection con = dataSource.getConnection();
+        CallableStatement cs = con.prepareCall(sql)) {
+            cs.setString(1, categoria.name());
+            ResultSet rs = cs.executeQuery();
+
+            while (rs.next()) {
+                Producto p = new Producto(
+                        rs.getLong(Producto.ID_PRODUCTO),
+                        rs.getString(Producto.SKU),
+                        rs.getString(Producto.NOMBRE),
+                        rs.getString(Producto.DESCRIPCION),
+                        rs.getDouble(Producto.PRECIO),
+                        rs.getInt(Producto.STOCK),
+                        EnumCategoria.valueOf(rs.getString(Producto.CATEGORIA)),
+                        rs.getString(Producto.IMAGEN)
+                );
+                productos.add(p);
+            }
+        }catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return productos;

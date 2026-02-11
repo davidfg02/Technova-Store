@@ -4,14 +4,9 @@ import com.example.demo.model.Pedido;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
 
 @Repository
 public class PedidoRepository {
@@ -24,18 +19,18 @@ public class PedidoRepository {
     public List<Pedido> findAll() {
         List<Pedido> pedidos = new ArrayList<>();
 
-        String sql = "SELECT id_pedido, id_usuario,fecha, total_pedido FROM pedido";
+        String sql = "{CALL obtener_pedidos()}";
 
         try (Connection con = dataSource.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+             CallableStatement cs = con.prepareCall(sql);
+             ResultSet rs = cs.executeQuery()){
 
             while (rs.next()) {
                 Pedido p = new Pedido(
-                        rs.getLong("id_pedido"),
-                        rs.getLong("id_usuario"),
-                        rs.getDate("fecha"),
-                        rs.getDouble("total_pedido")
+                        rs.getLong(Pedido.ID_PEDIDO),
+                        rs.getLong(Pedido.ID_USUARIO),
+                        rs.getDate(Pedido.FECHA),
+                        rs.getDouble(Pedido.TOTAL_PEDIDO)
                 );
                 pedidos.add(p);
             }

@@ -1,14 +1,11 @@
 package com.example.demo.repository;
 
+import com.example.demo.model.EnumRol;
 import com.example.demo.model.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,18 +20,18 @@ public class UsuarioRepository {
     public List<Usuario> findAll() {
         List<Usuario> usuarios = new ArrayList<>();
 
-        String sql = "SELECT id_usuario, email, password, rol FROM usuario";
+        String sql = "{CALL obtener_usuarios()}";
 
         try (Connection con = dataSource.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+             CallableStatement cs = con.prepareCall(sql);
+             ResultSet rs = cs.executeQuery()) {
 
             while (rs.next()) {
                 Usuario u = new Usuario(
-                        rs.getLong("id_usuario"),
-                        rs.getString("email"),
-                        rs.getString("password"),
-                        rs.getString("rol")
+                        rs.getLong(Usuario.ID_USUARIO),
+                        rs.getString(Usuario.EMAIL),
+                        rs.getString(Usuario.PASSWORD),
+                        EnumRol.valueOf(rs.getString(Usuario.ROL))
                 );
                 usuarios.add(u);
             }
@@ -54,7 +51,7 @@ public class UsuarioRepository {
             
             ps.setString(1, usuario.getEmail());
             ps.setString(2, usuario.getPassword());
-            ps.setString(3, usuario.getRol());
+            ps.setString(3, usuario.getRol().name());
 
             ps.executeUpdate();
             

@@ -12,18 +12,20 @@ import java.util.List;
 @Repository
 public class ProductoRepository {
     private final DataSource dataSource;
+
     public ProductoRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-    public List<Producto> findAll(){
+
+    public List<Producto> findAll() {
         List<Producto> productos = new ArrayList<>();
         String sql = "SELECT * FROM producto";
 
         try (Connection con = dataSource.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery()){
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (rs.next()){
+            while (rs.next()) {
                 Producto p = new Producto(
                         rs.getLong(Producto.ID_PRODUCTO),
                         rs.getString(Producto.SKU),
@@ -42,11 +44,11 @@ public class ProductoRepository {
         return productos;
     }
 
-    public void save(Producto producto){
+    public void save(Producto producto) {
         String sql = "INSERT INTO producto (sku, nombre, descripcion, precio, stock, categoria, imagen) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection con = dataSource.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, producto.getSku());
             ps.setString(2, producto.getNombre());

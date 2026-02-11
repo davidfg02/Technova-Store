@@ -2,6 +2,12 @@ package com.example.demo.model;
 import java.sql.Date;
 
 public class Pedido {
+
+    public static final String ID_PEDIDO = "id_pedido";
+    public static final String ID_USUARIO = "id_usuario";
+    public static final String FECHA = "fecha";
+    public static final String TOTAL_PEDIDO = "total_pedido";
+
     private Long id_pedido;
     private Long id_usuario;
     private Date fecha;

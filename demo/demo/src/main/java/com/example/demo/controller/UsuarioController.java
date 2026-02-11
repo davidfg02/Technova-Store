@@ -22,7 +22,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public void crear(@RequestBody Usuario usuario) {
-        repository.save(usuario);
+    public Usuario crear(@RequestBody Usuario usuario) {
+        return repository.save(usuario);
     }
 }

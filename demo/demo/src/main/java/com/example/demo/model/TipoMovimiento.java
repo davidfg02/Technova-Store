@@ -1,5 +1,3 @@
 package com.example.demo.model;
 
-public  enum TipoMovimiento {
-    entrada,salida
-}
+public  enum TipoMovimiento {Entrada,Salida}

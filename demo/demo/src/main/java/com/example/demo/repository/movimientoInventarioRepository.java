@@ -32,7 +32,7 @@ public class movimientoInventarioRepository {
                             r.getString("motivo"),
                             r.getInt("cantidad"),
                             r.getDate("fecha"),
-                            TipoMovimiento.valueOf(r.getString("TipoMovimiento")),
+                            TipoMovimiento.valueOf(r.getString("tipo_movimiento")),
                             r.getInt("id_producto")
                             );
                     movimiento_inventario.add(u);
@@ -46,16 +46,15 @@ public class movimientoInventarioRepository {
         }
 
         public void save(movimiento_inventario movimiento_inventario) {
-            String sql = "INSERT INTO usuario ( id_producto, fecha, cantidad,motivo ) VALUES ( ?, ?, ?,?)";
+            String sql = "INSERT INTO movimiento_inventario ( motivo,cantidad,id_producto) VALUES ( ?, ?, ?)";
 
             try (Connection con = dataSource.getConnection();
                  PreparedStatement ps = con.prepareStatement(sql)) {
-/*
-                ps.setString(1, usuario.getEmail());
-                ps.setString(2, usuario.getPassword());
-                ps.setString(3, usuario.getRol());
+                ps.setString(1, movimiento_inventario.getMotivo());
+                ps.setInt(2, movimiento_inventario.getCantidad());
+                ps.setInt(3, movimiento_inventario.getId_producto());
 
-                ps.executeUpdate();*/
+                ps.executeUpdate();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);

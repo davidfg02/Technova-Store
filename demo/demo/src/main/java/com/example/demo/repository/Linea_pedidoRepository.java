@@ -19,7 +19,7 @@ public class Linea_pedidoRepository {
     public List<Linea_pedido> findAll() {
         List<Linea_pedido> linea_pedido = new ArrayList<>();
 
-        String sql = "{CALL obtener_linea_pedido()}";
+        String sql = "{CALL sp_lineapedido_listar()}";
 
         try (Connection con = dataSource.getConnection();
              CallableStatement cs = con.prepareCall(sql);

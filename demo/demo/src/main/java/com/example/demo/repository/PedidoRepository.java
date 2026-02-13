@@ -22,7 +22,7 @@ public class PedidoRepository {
         List<Pedido> pedidos = new ArrayList<>();
 
         // Requisito Entregable 3: endpoints GET -> procedimientos almacenados
-        String sql = "{CALL sp_pedidos_listar(?, ?, ?)}";
+        String sql = "{CALL sp_pedidos_filtro(?, ?, ?)}";
 
         try (Connection con = dataSource.getConnection();
              CallableStatement cs = con.prepareCall(sql)){

@@ -22,7 +22,7 @@ public class UsuarioRepository {
     public List<Usuario> findAll() {
         List<Usuario> usuarios = new ArrayList<>();
 
-        String sql = "{CALL obtener_usuarios()}";
+        String sql = "{CALL sp_usuarios_listar()}";
 
         try (Connection con = dataSource.getConnection();
              CallableStatement cs = con.prepareCall(sql);

@@ -21,7 +21,7 @@ public class movimientoInventarioRepository {
         List<movimiento_inventario> movimiento_inventario = new ArrayList<>();
 
 //=================Se debe cambiar por el call correcto==============================//
-        String sql = "CALL obtener_linea_pedido()";
+        String sql = "CALL sp_movimientoinventario_listar()";
 
         try (Connection con = dataSource.getConnection();
              PreparedStatement p = con.prepareStatement(sql);
@@ -48,13 +48,14 @@ public class movimientoInventarioRepository {
     }
 
     public void save(movimiento_inventario movimiento_inventario) {
-        String sql = "INSERT INTO movimiento_inventario ( motivo,cantidad,id_producto) VALUES ( ?, ?, ?)";
+        String sql = "INSERT INTO movimiento_inventario ( motivo,cantidad,id_producto,tipo_movimiento) VALUES ( ?, ?, ?, ?)";
 
         try (Connection con = dataSource.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, movimiento_inventario.getMotivo());
             ps.setInt(2, movimiento_inventario.getCantidad());
             ps.setLong(3, movimiento_inventario.getId_producto());
+          ps.setString(4,movimiento_inventario.gettipo_movimiento().name());
 
             ps.executeUpdate();
 

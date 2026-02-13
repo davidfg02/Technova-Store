@@ -17,7 +17,9 @@ public class ProductoRepository {
     }
     public List<Producto> findAll(){
         List<Producto> productos = new ArrayList<>();
-        String sql = "{CALL obtener_productos()}";
+        // Requisito Entregable 3: los endpoints GET deben usar procedimientos almacenados
+        // definidos en procedures_technova.sql (sin SELECT embebido en el código).
+        String sql = "{CALL sp_productos_listar()}";
 
         try (Connection con = dataSource.getConnection();
              CallableStatement cs = con.prepareCall(sql);
@@ -44,7 +46,7 @@ public class ProductoRepository {
 
     public List<Producto> findByCategoria(EnumCategoria categoria){
         List<Producto> productos = new ArrayList<>();
-        String sql = "{CALL obtener_productos_categoria()}";
+        String sql = "{CALL sp_productos_por_categoria(?)}";
 
         try(Connection con = dataSource.getConnection();
         CallableStatement cs = con.prepareCall(sql)) {

@@ -3,6 +3,8 @@ package com.example.demo.repository;
 import com.example.demo.model.EnumRol;
 import com.example.demo.model.Usuario;
 import org.springframework.stereotype.Repository;
+import com.example.demo.model.LoginResponse;
+
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -68,4 +70,31 @@ public class UsuarioRepository {
         
         return usuario;
     }
+    public LoginResponse login(String email, String password) {
+
+        // Para el login, el enunciado pide buscar en la tabla USUARIOS.
+        // (La restricción de "no SELECT embebido" aplica a los endpoints GET.)
+        String sql = "SELECT rol FROM usuario WHERE email = ? AND password = ?";
+
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String rolDb = rs.getString("rol");
+                    // El enunciado muestra ejemplo "admin"; lo devolvemos en minúsculas.
+                    String rolSalida = rolDb == null ? null : rolDb.toLowerCase();
+                    return new LoginResponse("ok", rolSalida);
+                }
+            }
+            return null;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -3,6 +3,12 @@ package com.example.demo.model;
 
 public class Linea_pedido {
 
+    public static final String ID_LINEA_PEDIDO = "id_linea_pedido";
+    public static final String ID_PEDIDO = "id_pedido";
+    public static final String ID_PRODUCTO = "id_producto";
+    public static final String CANTIDAD = "cantidad";
+    public static final String PRECIO_UNITARIO_MOMENTO = "precio_unitario_momento";
+
     private int id_linea_pedido;
     private int id_pedido;
     private int id_producto;

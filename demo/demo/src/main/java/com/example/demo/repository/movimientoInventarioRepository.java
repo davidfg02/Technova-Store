@@ -31,10 +31,12 @@ public class movimientoInventarioRepository {
                 movimiento_inventario u = new movimiento_inventario(
                         rs.getLong(com.example.demo.model.movimiento_inventario.ID_MOVIMIENTO),
                         rs.getString(com.example.demo.model.movimiento_inventario.MOTIVO),
-                        rs.getInt(com.example.demo.model.movimiento_inventario.ENUMTIPOMOVIMIENTO),
+                        rs.getInt(com.example.demo.model.movimiento_inventario.CANTIDAD),
                         rs.getDate(com.example.demo.model.movimiento_inventario.FECHA),
                         EnumTipoMovimiento.valueOf(rs.getString(com.example.demo.model.movimiento_inventario.ENUMTIPOMOVIMIENTO)),
-                        rs.getLong(com.example.demo.model.movimiento_inventario.ID_PRODUCTO));
+                        rs.getLong(com.example.demo.model.movimiento_inventario.ID_PRODUCTO)
+
+                );
                 movimiento_inventario.add(u);
             }
 

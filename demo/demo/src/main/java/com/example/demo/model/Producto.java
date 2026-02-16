@@ -20,9 +20,6 @@ public class Producto {
     private EnumCategoria categoria;
     private String imagen;
 
-    public Producto() {
-    }
-
     public Producto(Long id_producto, String sku, String nombre, String descripcion, Double precio, int stock, EnumCategoria categoria, String imagen) {
         this.id_producto = id_producto;
         this.sku = sku;

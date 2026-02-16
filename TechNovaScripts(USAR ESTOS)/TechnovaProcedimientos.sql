@@ -1,4 +1,4 @@
-USE db_technova;
+		USE db_technova;
 DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_usuarios_listar $$
 CREATE PROCEDURE sp_usuarios_listar()
@@ -19,11 +19,11 @@ FROM producto;
 END $$
 DELIMITER ;
 CALL sp_productos_listar;
-
+drop procedure if exists sp_productos_por_categoria;
 DELIMITER $$
 CREATE PROCEDURE sp_productos_por_categoria(IN p_categoria varchar(100))
 BEGIN
-SELECT producto.nombre, producto.categoria
+SELECT *
 FROM producto
 WHERE producto.categoria = p_categoria;
 END $$

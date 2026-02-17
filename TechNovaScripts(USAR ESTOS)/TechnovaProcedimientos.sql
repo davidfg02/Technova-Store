@@ -8,7 +8,7 @@ FROM usuario;
 END $$
 DELIMITER ;
 
-CALL sp_usuarios_listar;
+C	ALL sp_usuarios_listar;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_productos_listar $$
@@ -71,5 +71,31 @@ FROM movimiento_inventario;
 END $$
 DELIMITER ;
 CALL sp_movimientoinventario_listar;
+
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS  sp_lineapedido_listar_usuario $$
+CREATE PROCEDURE sp_lineapedido_listar_usuario(in p_email varchar(100) ,in p_password varchar(255))
+BEGIN 
+SELECT * 
+FROM pedido JOIN usuario ON pedido.id_usuario = usuario.id_usuario
+where  p_email = email and p_password = password;
+END $$
+DELIMITER ;
+CALL sp_lineapedido_listar_usuario('javiervs@gmail.com','uyuyuyuy124.S');
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS sp_usuario $$
+CREATE PROCEDURE sp_usuario(in p_email varchar(100) ,in p_password varchar(255))
+BEGIN 
+SELECT *
+FROM usuario
+where p_email= email and p_password= password;
+END $$
+DELIMITER ;
+call sp_usuario ('javiervs@gmail.com','uyuyuyuy124.S');
+
 
 

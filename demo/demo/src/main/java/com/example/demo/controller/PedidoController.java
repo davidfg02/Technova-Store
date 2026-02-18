@@ -4,10 +4,12 @@ import com.example.demo.model.Pedido;
 import com.example.demo.model.PedidoRequest;
 import com.example.demo.model.PedidoResponse;
 import com.example.demo.repository.PedidoRepository;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -24,13 +26,15 @@ public class PedidoController {
      * Endpoint opcional de lectura (si lo usáis en evidencias): GET /api/pedidos
      * Usa procedimientos almacenados (CALL sp_pedidos_listar).
      */
-    @GetMapping
+    @GetMapping("/fecha")
     public List<Pedido> listarPedidos(
-            @RequestParam(required = false) String estado,
-            @RequestParam(required = false) Date fechaIni,
-            @RequestParam(required = false) Date fechaFin
+            @RequestParam(required = false) String pedido_estado,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+            @RequestParam(required = false) LocalDateTime fechaIni,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+            @RequestParam(required = false) LocalDateTime fechaFin
     ) {
-        return repository.findAll(estado, fechaIni, fechaFin);
+        return repository.findAll(pedido_estado, fechaIni, fechaFin);
     }
 
     /**

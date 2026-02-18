@@ -1,14 +1,18 @@
 package com.example.demo.repository;
 
+import com.example.demo.model.EnumPedidoEstado;
 import com.example.demo.model.Pedido;
 import com.example.demo.model.PedidoRequest;
 import com.example.demo.model.LineaPedidoRequest;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
 
 @Repository
 public class PedidoRepository {
@@ -18,7 +22,7 @@ public class PedidoRepository {
         this.dataSource = dataSource;
     }
 
-    public List<Pedido> findAll(String estado, Date fechaIni, Date fechaFin) {
+    public List<Pedido> findAll(String estado, LocalDateTime fechaIni, LocalDateTime fechaFin) {
         List<Pedido> pedidos = new ArrayList<>();
 
         // Requisito Entregable 3: endpoints GET -> procedimientos almacenados
@@ -29,16 +33,20 @@ public class PedidoRepository {
 
             // p_estado no existe en la tabla pedido del hito 2; se pasa igual por compatibilidad.
             cs.setString(1, estado);
-            cs.setDate(2, fechaIni);
-            cs.setDate(3, fechaFin);
+            cs.setTimestamp(2, Timestamp.valueOf(fechaIni));
+
+            cs.setTimestamp(3, Timestamp.valueOf(fechaFin));
+
 
             try (ResultSet rs = cs.executeQuery()) {
                 while (rs.next()) {
+
                     Pedido p = new Pedido(
                             rs.getLong(Pedido.ID_PEDIDO),
                             rs.getLong(Pedido.ID_USUARIO),
-                            rs.getDate(Pedido.FECHA),
-                            rs.getDouble(Pedido.TOTAL_PEDIDO)
+                            rs.getTimestamp(Pedido.FECHA).toLocalDateTime(),
+                            rs.getDouble(Pedido.TOTAL_PEDIDO),
+                            EnumPedidoEstado.valueOf(rs.getString(Pedido.PEDIDO_ESTADO))
                     );
                     pedidos.add(p);
                 }

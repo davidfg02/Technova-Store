@@ -16,13 +16,13 @@ public class UsuarioController {
         this.repository = repository;
     }
 
-    @GetMapping
+  /*  @GetMapping
     public List<Usuario> listar() {
-        return repository.findAll();
+        return repository.findByEmailAndPassword();
     }
 
     @PostMapping
     public Usuario crear(@RequestBody Usuario usuario) {
         return repository.save(usuario);
-    }
+    }*/
 }

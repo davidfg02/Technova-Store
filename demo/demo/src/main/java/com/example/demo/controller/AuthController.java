@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.LoginRequest;
 import com.example.demo.model.LoginResponse;
+import com.example.demo.model.Usuario;
 import com.example.demo.repository.UsuarioRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +23,13 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
-        LoginResponse response = usuarioRepository.login(request.getEmail(), request.getPassword());
+        Usuario usuario = usuarioRepository.findByEmailAndPassword(request.getEmail(), request.getPassword());
 
-        if (response == null) {
+        if (usuario == null) {
             return ResponseEntity.status(401).body("Credenciales incorrectas");
         }
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(usuario);
     }
 }
 

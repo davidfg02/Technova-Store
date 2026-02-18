@@ -19,6 +19,39 @@ public class UsuarioRepository {
         this.dataSource = dataSource;
     }
 
+    public Usuario findByEmailAndPassword(String email, String password) {
+
+        String sql = "{CALL sp_usuario(?, ?)}";
+
+        try (Connection con = dataSource.getConnection();
+             CallableStatement cs = con.prepareCall(sql)) {
+
+            cs.setString(1, email);
+            cs.setString(2, password);
+
+            try (ResultSet rs = cs.executeQuery()) {
+                if (rs.next()) {
+                    return new Usuario(
+                            rs.getLong("id_usuario"),
+                            rs.getString("email"),
+                            rs.getString("password"),
+                            EnumRol.valueOf(rs.getString("rol"))
+                    );
+                }
+            }
+
+            return null;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+  /*  public UsuarioRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     public List<Usuario> findAll() {
         List<Usuario> usuarios = new ArrayList<>();
 
@@ -97,4 +130,4 @@ public class UsuarioRepository {
         }
     }
 
-}
+}*/

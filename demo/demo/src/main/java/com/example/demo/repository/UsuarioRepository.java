@@ -14,9 +14,53 @@ import java.util.List;
 @Repository
 public class UsuarioRepository {
     private final DataSource dataSource;
+    public List<Usuario> findAll() {
+        List<Usuario> usuarios = new ArrayList();
+        String sql = "{CALL sp_usuarios_listar()}";
 
+        try {
+            try (
+                    Connection con = this.dataSource.getConnection();
+                    CallableStatement cs = con.prepareCall(sql);
+                    ResultSet rs = cs.executeQuery();
+            ) {
+                while(rs.next()) {
+                    Usuario u = new Usuario(rs.getLong("id_usuario"), rs.getString("email"), rs.getString("password"), EnumRol.valueOf(rs.getString("rol")));
+                    usuarios.add(u);
+                }
+            }
+
+            return usuarios;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public UsuarioRepository(DataSource dataSource) {
         this.dataSource = dataSource;
+    }
+    public Usuario save(Usuario usuario) {
+        String sql = "INSERT INTO usuario (email, password, rol) VALUES ( ?, ?, ?)";
+
+        try {
+            try (
+                    Connection con = this.dataSource.getConnection();
+                    PreparedStatement ps = con.prepareStatement(sql, 1);
+            ) {
+                ps.setString(1, usuario.getEmail());
+                ps.setString(2, usuario.getPassword());
+                ps.setString(3, usuario.getRol().name());
+                ps.executeUpdate();
+
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                    }
+                }
+            }
+
+            return usuario;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Usuario findByEmailAndPassword(String email, String password) {
@@ -103,6 +147,7 @@ public class UsuarioRepository {
         
         return usuario;
     }
+    /*
     public LoginResponse login(String email, String password) {
 
         // Para el login, el enunciado pide buscar en la tabla USUARIOS.

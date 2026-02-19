@@ -1,4 +1,5 @@
 		USE db_technova;
+-- ======================== LISTAR USUARIOS ================================== --
 DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_usuarios_listar $$
 CREATE PROCEDURE sp_usuarios_listar()
@@ -8,8 +9,9 @@ FROM usuario;
 END $$
 DELIMITER ;
 
-C	ALL sp_usuarios_listar;
+CALL sp_usuarios_listar;
 
+-- ======================== LISTAR PRODUCTOS (OBLIGATORIO) ================================= --
 DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_productos_listar $$
 CREATE PROCEDURE sp_productos_listar()
@@ -19,6 +21,8 @@ FROM producto;
 END $$
 DELIMITER ;
 CALL sp_productos_listar;
+
+-- ============= LISTAR PRODUCTOS POR CATEGORIAS(OBLIGATORIO) =========================== --
 drop procedure if exists sp_productos_por_categoria;
 DELIMITER $$
 CREATE PROCEDURE sp_productos_por_categoria(IN p_categoria varchar(100))
@@ -30,6 +34,8 @@ END $$
 DELIMITER ;
 CALL sp_productos_por_categoria('componentes');
 
+-- ========================= LISTAR PEDIDOS ===================================== --
+
 DELIMITER $$
 DROP PROCEDURE IF EXISTS  sp_pedidos $$
 CREATE PROCEDURE sp_pedidos()
@@ -40,7 +46,7 @@ END $$
 DELIMITER ;
 CALL sp_pedidos;
 
-
+-- ================= LISTAR PEDIDOS POR FECHA Y ESTADO(OBLIGATORIO) ============================ --
 DELIMITER $$
 DROP PROCEDURE IF EXISTS  sp_pedidos_filtro $$
 CREATE PROCEDURE sp_pedidos_filtro(IN p_estado VARCHAR(30), IN p_fecha_ini DATETIME, IN p_fecha_fin DATETIME)
@@ -50,8 +56,9 @@ FROM pedido
 WHERE pedido.pedido_estado = p_estado AND fecha BETWEEN p_fecha_ini AND p_fecha_fin ;
 END $$
 DELIMITER ;
-call sp_pedidos_filtro('ENVIADO', '2026-02-12 09:39:56', '2026-02-12 09:39:56');
+call sp_pedidos_filtro('ENVIADO', '2026-02-12 09:39:56', '2026-02-19 09:39:56');
 
+-- ============================= LISTAR LINEA DE PEDIDO ============================ --
 DELIMITER $$
 DROP PROCEDURE IF EXISTS  sp_lineapedido_listar $$
 CREATE PROCEDURE sp_lineapedido_listar()
@@ -62,6 +69,7 @@ END $$
 DELIMITER ;
 CALL sp_lineapedido_listar;
 
+-- =========================== LISTAR MOVIMIENTO DE INVENTARIO ======================= --
 DELIMITER $$
 DROP PROCEDURE IF EXISTS  sp_movimientoinventario_listar $$
 CREATE PROCEDURE sp_movimientoinventario_listar()
@@ -73,7 +81,7 @@ DELIMITER ;
 CALL sp_movimientoinventario_listar;
 
 
-
+-- ====================== LISTAR LINEA DE PEDIDO POR USUARIOS ========================= --
 DELIMITER $$
 DROP PROCEDURE IF EXISTS  sp_lineapedido_listar_usuario $$
 CREATE PROCEDURE sp_lineapedido_listar_usuario(in p_email varchar(100) ,in p_password varchar(255))
@@ -85,7 +93,7 @@ END $$
 DELIMITER ;
 CALL sp_lineapedido_listar_usuario('javiervs@gmail.com','uyuyuyuy124.S');
 
-
+-- ========================= LISTAR USUARIO ============================================== --
 DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_usuario $$
 CREATE PROCEDURE sp_usuario(in p_email varchar(100) ,in p_password varchar(255))
